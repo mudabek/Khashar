@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "658556428997",
+    "firebase_url": "https://khashar-76795.firebaseio.com",
+    "project_id": "khashar-76795",
+    "storage_bucket": "khashar-76795.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:658556428997:android:f008cb0798fb6283",
+        "android_client_info": {
+          "package_name": "com.otash.android.khashar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "658556428997-9mupoln0b18nppuv0c7hsgoash6e15hf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.otash.android.khashar",
+            "certificate_hash": "977cea05cf0cac10b860e36c0fe7b8c6cb9a6989"
+          }
+        },
+        {
+          "client_id": "658556428997-sj1hgo7pgs3gfv11314k8k27e09p4lsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOsbXV2f8Dno8B9H8ADIuSL4vnIQ2A3iQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "658556428997-sj1hgo7pgs3gfv11314k8k27e09p4lsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
