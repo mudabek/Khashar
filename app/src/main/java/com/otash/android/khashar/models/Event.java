@@ -1,6 +1,8 @@
 package com.otash.android.khashar.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -12,13 +14,13 @@ public class Event implements Serializable {
     private String mTitle;
     private String mLocation;
     private String mDescription;
+    private List<String> mUsernames;
 
-    public Event() {
-        mId = UUID.randomUUID();
-    }
+    public Event(){}
 
     public Event(String title) {
         mId = UUID.randomUUID();
+        mUsernames = new ArrayList<String>();
         mTitle = title;
     }
 
@@ -27,6 +29,15 @@ public class Event implements Serializable {
         mTitle = title;
         mLocation = location;
         mDescription = description;
+        mUsernames = new ArrayList<String>();
+    }
+
+    public void addUsername(String username) {
+        mUsernames.add(username);
+    }
+
+    public boolean containsUsername(String username) {
+        return mUsernames.contains(username);
     }
 
     public UUID getId() {
