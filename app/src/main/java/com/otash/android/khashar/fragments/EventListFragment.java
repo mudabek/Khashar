@@ -3,6 +3,7 @@ package com.otash.android.khashar.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,10 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.otash.android.khashar.activities.EventActivity;
+import com.otash.android.khashar.activities.NewEventActivity;
+import com.otash.android.khashar.activities.TabLayoutActivity;
 import com.otash.android.khashar.adapters.EventAdapter;
 import com.otash.android.khashar.R;
 import com.otash.android.khashar.utilities.RecyclerItemClickListener;
 import com.otash.android.khashar.models.Event;
+
+import static com.otash.android.khashar.R.id.floatingEventButton;
 
 
 /**
@@ -55,6 +60,16 @@ public class EventListFragment extends Fragment {
                 })
         );
 
+        //FloatingActionButton floatingEventButton = (FloatingActionButton) getView().findViewById(R.id.floatingEventButton);
+/*
+        floatingEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), NewEventActivity.class);
+                startActivity(i);
+            }
+        });
+        */
 
         return rootView;
 

@@ -3,6 +3,7 @@ package com.otash.android.khashar.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -35,12 +37,12 @@ import java.util.List;
 public class TabLayoutActivity extends AppCompatActivity {
 
     public static final int RC_SIGN_IN = 1;
-    public static final String ANONYMOUS = "anonymous";
+
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private String mUsername;
+    private FloatingActionButton floatingEventButton;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private DatabaseReference mDatabase;
@@ -49,8 +51,6 @@ public class TabLayoutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabs);
-
-        mUsername = ANONYMOUS;
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -144,12 +144,8 @@ public class TabLayoutActivity extends AppCompatActivity {
     }
 
     private void onSignedInInitialize(String username) {
-        User user = new User(username, "street");
+        User user = new User(username);
         mDatabase.child("users").child(username).setValue(user);
-    }
-
-    private void onSignedOutCleanup() {
-        mUsername = ANONYMOUS;
     }
 
     private void setupViewPager(ViewPager viewPager) {

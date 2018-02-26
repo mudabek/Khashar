@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.otash.android.khashar.R;
 
 /**
@@ -22,7 +25,7 @@ public class ProfileFragment extends Fragment {
 
     private EditText username;
     private EditText location;
-    private Button enter;
+    private Button enterButton;
     private FirebaseAuth mFirebaseAuth;
     private DatabaseReference mDatabase;
 
@@ -44,17 +47,45 @@ public class ProfileFragment extends Fragment {
         username = (EditText) v.findViewById(R.id.profile_username);
         location = (EditText) v.findViewById(R.id.profile_location);
 
-        enter = (Button) v.findViewById(R.id.profile_button);
-        enter.setOnClickListener(new View.OnClickListener() {
+        enterButton = (Button) v.findViewById(R.id.profile_button);
+        enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.child("users").child("username").setValue(username.getText());
-                mDatabase.child("users").child("location").setValue(location.getText());
+                //mDatabase.child("users").child("username").push().setValue(username.getText());
+                mDatabase.child("users").child(mFirebaseAuth.getCurrentUser().getDisplayName())
+                        .child("location").setValue(location.getText().toString());
+                mDatabase.child("users").child(mFirebaseAuth.getCurrentUser().getDisplayName())
+                        .child("username").setValue(username.getText().toString());
             }
         });
 
-        username.setText(mFirebaseAuth.getCurrentUser().getDisplayName());
-        //location.setText(mFirebaseAuth.getCurrentUser().ge)
+        mDatabase.child("users").child(mFirebaseAuth.getCurrentUser().getDisplayName())
+                .child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.getValue(String.class);
+                username.setText(name);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("users").child(mFirebaseAuth.getCurrentUser().getDisplayName())
+                .child("location").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String loc = dataSnapshot.getValue(String.class);
+                location.setText(loc);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         return v;
     }
 }
