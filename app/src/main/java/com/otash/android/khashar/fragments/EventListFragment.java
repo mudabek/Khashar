@@ -28,12 +28,16 @@ import static com.otash.android.khashar.R.id.floatingEventButton;
 
 
 public class EventListFragment extends Fragment {
-    public EventListFragment() {
-    }
+    private FloatingActionButton floatingEventButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+/*
+
+
+        */
     }
 
     @Nullable
@@ -60,8 +64,15 @@ public class EventListFragment extends Fragment {
                 })
         );
 
-        //FloatingActionButton floatingEventButton = (FloatingActionButton) getView().findViewById(R.id.floatingEventButton);
-/*
+
+        return rootView;
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        floatingEventButton = (FloatingActionButton) getView().findViewById(R.id.floatingEventButton);
         floatingEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,9 +80,5 @@ public class EventListFragment extends Fragment {
                 startActivity(i);
             }
         });
-        */
-
-        return rootView;
-
     }
 }
