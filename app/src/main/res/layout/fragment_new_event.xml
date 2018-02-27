@@ -7,6 +7,7 @@
 
     <EditText
         android:id="@+id/new_event_title"
+        android:hint="Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
@@ -14,6 +15,7 @@
 
     <EditText
         android:id="@+id/new_event_location"
+        android:hint="Location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
@@ -21,6 +23,7 @@
 
     <EditText
         android:id="@+id/new_event_description"
+        android:hint="Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"

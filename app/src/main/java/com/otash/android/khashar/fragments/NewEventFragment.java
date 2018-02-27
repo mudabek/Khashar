@@ -42,16 +42,18 @@ public class NewEventFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_new_event, container, false);
 
-        mNewEventButton = (Button) v.findViewById(R.id.new_event_button);
         mNewEventTitle = (EditText) v.findViewById(R.id.new_event_title);
         mNewEventDescription = (EditText) v.findViewById(R.id.new_event_description);
         mNewEventLocation = (EditText) v.findViewById(R.id.new_event_location);
 
         mDatabase = FirebaseDatabase.getInstance();
-        mEventsDatabaseReference = mDatabase.getReference().child("events");
+
+        mNewEventButton = (Button) v.findViewById(R.id.new_event_button);
         mNewEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mEventsDatabaseReference = mDatabase.getReference().
+                        child(mNewEventLocation.getText().toString());
                 Event event = new Event(mNewEventTitle.getText().toString(),
                         mNewEventDescription.getText().toString(),
                         mNewEventLocation.getText().toString());

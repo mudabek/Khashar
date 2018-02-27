@@ -19,6 +19,9 @@ import com.otash.android.khashar.R;
 import com.otash.android.khashar.utilities.RecyclerItemClickListener;
 import com.otash.android.khashar.models.Event;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.otash.android.khashar.R.id.floatingEventButton;
 
 
@@ -45,8 +48,9 @@ public class EventListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_events_list, container, false);
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        final Event events[] = {new Event("Event 1", "NY", "Go out and help people"), new Event("Event 2", "Grinnell", "All for one")};
-        final EventAdapter mAdapter = new EventAdapter(events);
+        final List<Event> eventList= new ArrayList<>();
+        eventList.add(new Event("Event 1", "NY", "Go out and help people"));
+        final EventAdapter mAdapter = new EventAdapter(eventList);
         recyclerView.setAdapter(mAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -54,7 +58,7 @@ public class EventListFragment extends Fragment {
                 new RecyclerItemClickListener(getContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
                         Intent i = new Intent(getActivity(), EventActivity.class);
-                        i.putExtra(EventFragment.EXTRA_EVENT_ID, events[position]);
+                        i.putExtra(EventFragment.EXTRA_EVENT_ID, eventList.get(position));
                         startActivity(i);
                     }
 
